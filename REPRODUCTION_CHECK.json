@@ -16,88 +16,88 @@
       "max_numeric_difference": 2.6842403855198427e-09
     },
     {
-      "file": "derived_results/full_reconstruction/additional_controls_and_matched_baseline.csv",
+      "file": "derived_results/panel_analysis/additional_controls_and_matched_baseline.csv",
       "rows": 42,
       "max_numeric_difference": 2.1818102879933576e-12
     },
     {
-      "file": "derived_results/full_reconstruction/country_missing_years.csv",
+      "file": "derived_results/panel_analysis/country_missing_years.csv",
       "rows": 139,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/declared_sensitivity_all_coefficients.csv",
+      "file": "derived_results/panel_analysis/declared_sensitivity_all_coefficients.csv",
       "rows": 69,
       "max_numeric_difference": 2.5146551507759796e-12
     },
     {
-      "file": "derived_results/full_reconstruction/descriptive_estimation_sample.csv",
+      "file": "derived_results/panel_analysis/descriptive_estimation_sample.csv",
       "rows": 9,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/Driscoll_Kraay_lag2_sensitivity.csv",
+      "file": "derived_results/panel_analysis/Driscoll_Kraay_lag2_sensitivity.csv",
       "rows": 18,
       "max_numeric_difference": 1.0089706847793423e-12
     },
     {
-      "file": "derived_results/full_reconstruction/ICRG_GBD2021_country_crosswalk.csv",
+      "file": "derived_results/panel_analysis/ICRG_GBD2021_country_crosswalk.csv",
       "rows": 141,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/income_heterogeneity_joint_tests.csv",
+      "file": "derived_results/panel_analysis/income_heterogeneity_joint_tests.csv",
       "rows": 6,
       "max_numeric_difference": 7.052136652418994e-13
     },
     {
-      "file": "derived_results/full_reconstruction/income_heterogeneity_pairwise.csv",
+      "file": "derived_results/panel_analysis/income_heterogeneity_pairwise.csv",
       "rows": 18,
       "max_numeric_difference": 1.1901590823981678e-13
     },
     {
-      "file": "derived_results/full_reconstruction/income_timevarying_sensitivity.csv",
+      "file": "derived_results/panel_analysis/income_timevarying_sensitivity.csv",
       "rows": 72,
       "max_numeric_difference": 1.1862733018119798e-12
     },
     {
-      "file": "derived_results/full_reconstruction/missingness_on_WDI_skeleton.csv",
+      "file": "derived_results/panel_analysis/missingness_on_WDI_skeleton.csv",
       "rows": 13,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/PCA_explained_variance.csv",
+      "file": "derived_results/panel_analysis/PCA_explained_variance.csv",
       "rows": 5,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/PCA_loadings.csv",
+      "file": "derived_results/panel_analysis/PCA_loadings.csv",
       "rows": 5,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/primary_country_coverage.csv",
+      "file": "derived_results/panel_analysis/primary_country_coverage.csv",
       "rows": 131,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/primary_FE_all72_coefficients.csv",
+      "file": "derived_results/panel_analysis/primary_FE_all72_coefficients.csv",
       "rows": 72,
       "max_numeric_difference": 1.1862733018119798e-12
     },
     {
-      "file": "derived_results/full_reconstruction/primary_model_fit.csv",
+      "file": "derived_results/panel_analysis/primary_model_fit.csv",
       "rows": 3,
       "max_numeric_difference": 0.0
     },
     {
-      "file": "derived_results/full_reconstruction/primary_sample_flow.csv",
+      "file": "derived_results/panel_analysis/primary_sample_flow.csv",
       "rows": 12,
       "max_numeric_difference": 0.0
     }
   ],
   "input_files_matched": 14,
-  "execution": "Isolated raw-input rebuild using the distributed analysis tree; no pre-existing intermediate or fitted-result files required.",
+  "execution": "Analysis scripts run with the documented source inputs and compared with reference outputs.",
   "source_data_included": false,
-  "archive_sha256": "b3cad50d10599ad14784b625be4d6ef600a002dd26275248dd2c5d6bccea9015"
+  "archive_sha256": "e087071556adc0516e39b113370b9b471be285e012f986fa5312d5ff72078ad1"
 }

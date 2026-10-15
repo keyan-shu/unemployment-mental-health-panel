@@ -1,6 +1,6 @@
 # Source files and acquisition
 
-Keep the paths in `required_inputs.json` relative to the repository root. This manifest records the exact input hashes used for the revised analysis. The raw files and locally generated data are excluded by `.gitignore`.
+Keep the paths in `required_inputs.json` relative to the repository root. This manifest records the exact input hashes used for the analysis. The raw files and locally generated data are excluded by `.gitignore`.
 
 | Source | Obtain from | Dimensions and required local location |
 |---|---|---|
@@ -10,4 +10,4 @@ Keep the paths in `required_inputs.json` relative to the repository root. This m
 | KOF2025 | https://kof.ethz.ch/en/forecasts-and-indicators/indicators/kof-globalisation-index.html | Save `01_data/raw/kof/KOFGI_2025_public.xlsx`. The download utility uses the official 2025 workbook. |
 | PRS ICRG2024 | https://www.prsgroup.com/explore-our-products/icrg/ and https://epub.prsgroup.com/prepared-icrg-datasets | Authorized Table 3B annual component workbook, Table 3Ba subcomponents and country-name dictionary. Place the three legacy XLS files at the exact paths in `required_inputs.json` under `01_data/sj200-ICRG数据库(1984-2023)/`. Five components are A, C, F, I and L. Table 3Ba supports the declared discrepancy-exclusion check. Provider registration and subscription/access conditions apply. |
 
-Different publisher file formats or renamed sheets require explicit adaptation and revalidation. The recorded GBD audit validates the supplied 204-location export and its dimensional grid; a different subset cannot be silently substituted. Exact equality of estimates requires matching source values, not merely matching website URLs. If a different vintage is used, record it and report it as a new run rather than claiming reproduction of the recorded results.
+Use the releases, dimensions, filenames and sheet names specified above. The input checker compares SHA256 hashes before estimation.

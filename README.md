@@ -1,24 +1,27 @@
 # Unemployment and mental health country panel
 
-Reproducibility materials for the revised country-level study, 1996–2020.
-Repository: https://github.com/keyan-shu/unemployment-mental-health-panel
+Analysis code for **Unemployment and mental health across national income groups: a longitudinal country-level study, 1996–2020**.
 
-The original analytical files were unavailable. These scripts implement the explicitly reconstructed analysis in the revised manuscript; they do not recover the original manuscript's numerical tables.
+The project examines associations between national unemployment and mental disorder prevalence using country and year fixed-effects models, income-group comparisons, dynamic panel models and sensitivity analyses.
 
-## Download and extract the code
+## Download
 
-The complete source tree, specifications, expected results and validation scripts are provided in **[reproduction_bundle.zip](reproduction_bundle.zip)**. Download this archive or clone the repository, then extract it into a new directory before running the commands below:
+Download [reproduction_bundle.zip](reproduction_bundle.zip) or clone this repository, then extract the analysis files:
 
 ```sh
 python -m zipfile -e reproduction_bundle.zip analysis
 cd analysis
 ```
 
-The archive preserves the original directory structure. Source data must be obtained separately; no provider credentials or restricted raw data are included. `REPRODUCTION_CHECK.json` records the successful isolated rebuild and comparisons performed before publication.
+## Data
 
-## Reproduce the revised results
+Obtain the source data from the IHME GBD Results Tool, World Bank World Development Indicators, KOF Globalisation Index and PRS International Country Risk Guide. [DATA_SOURCES.md](DATA_SOURCES.md) lists the official websites, data releases, dimensions and local file paths. `required_inputs.json` records the 14 input files and their checksums. Access follows the respective providers' registration and access conditions.
 
-Use Python 3.14. Install the recorded dependencies, obtain the source files described in [DATA_SOURCES.md](DATA_SOURCES.md), then run:
+`download_public_inputs.py` downloads the WDI series and KOF2025 workbook. Obtain the GBD export, ICRG workbooks and World Bank historical income classification workbook from their corresponding websites.
+
+## Run
+
+Use Python 3.14 and install the dependencies:
 
 ```sh
 python -m pip install -r requirements.txt
@@ -26,29 +29,33 @@ python run_analysis.py --check-inputs
 python run_analysis.py
 ```
 
-The input check requires all 14 recorded files and their SHA256 hashes. It stops before estimation when inputs are missing or differ. Newly downloaded WDI releases can have revised values; a current release is not guaranteed to reproduce the recorded estimates. Source data are obtained separately from their providers. The repository does not include GBD source estimates, ICRG ratings or numerical instrument matrices.
+The input check compares the supplied files with the recorded checksums. Use the documented data releases and matching input files to reproduce the reference results.
 
-`download_public_inputs.py` downloads the required WDI series and KOF2025 workbook and preserves existing files. The historical World Bank income workbook must be obtained separately. The older `02_code/02_download_public_sources.py` is retained as a historical acquisition utility; it also downloads exploratory sources not used in the final analysis and is not part of the reproduction command.
+## Analyses
 
-## What the pipeline reproduces
+- Data cleaning, country mapping, sample selection and a five-component institutional PCA.
+- Twelve country and year fixed-effects models, country-clustered standard errors, confidence intervals and Benjamini–Hochberg corrections.
+- Joint and pairwise comparisons across national income groups.
+- Nine dynamic panel models with specified instrument sets, Hansen tests and AR diagnostics.
+- Sensitivity analyses for outcome age definition, study period, institutional indicators, income classification, additional controls and Driscoll–Kraay standard errors.
+- Descriptive statistics, country coverage, missingness and model fit summaries.
 
-- Cleaning, country mapping, sample selection and five-component PCA with fixed orientation and scale.
-- All 12 primary country/year fixed-effects models (72 slopes), country-clustered CR1 standard errors, confidence intervals and BH corrections.
-- Formal income-group joint and pairwise contrasts.
-- All nine declared exploratory GMM variants, including rejected diagnostics, lag rules, instrument counts, Hansen and AR tests. Instrument matrices are regenerated locally from source data.
-- All-age outcomes, pre-2020 analysis, ICRG discrepancy exclusions, same-sample omission of INST, time-varying income groups, additional controls with matched baselines, and Driscoll–Kraay inference.
-- Descriptive statistics, coverage and missingness used by the revised tables and appendices.
+The primary sample comprises 2,065 country-year observations from 131 countries. Dynamic models use 125 countries and 1,570 difference-equation observations; System GMM also uses 1,780 level-equation observations.
 
-Primary sample: 2,065 country-years from 131 countries. Dynamic models: 125 countries, 1,570 difference-equation observations; System GMM additionally contains 1,780 level-equation observations. Unfavorable or nonsignificant results remain included.
+## Files and validation
 
-## Files and verification
+| Location | Contents |
+|---|---|
+| `02_code/` | Analysis scripts, model specifications and pydynpd source |
+| `required_inputs.json` | Input filenames, sizes and SHA256 checksums |
+| `derived_results/` | Reference model outputs and summary statistics |
+| `inclusion_keys/` | Country-year sample indices |
+| `instrument_metadata/` | Dynamic-model commands and instrument definitions |
+| `validation/` | Output comparisons and independent implementation checks |
+| `TABLE_MAP.md` | Article tables and their analytical output files |
 
-`02_code/` contains the analysis scripts, specifications and vendored pydynpd. `required_inputs.json` identifies essential inputs; `input_manifest.json` also lists archived acquisition files that are not all needed to run the pipeline. `derived_results/` contains audited expected outputs. `inclusion_keys/` contains country/year keys without source values. `instrument_metadata/` records commands and instrument rules. [TABLE_MAP.md](TABLE_MAP.md) connects the manuscript tables to outputs.
-
-After rebuilding, `validation/verify_outputs.py` compares 18 expected tables and 27 sample-key files with regenerated outputs. It uses numerical tolerances and exact country/year membership. `validation/reproduction_report.json` records the result locally. `python run_analysis.py --verify-only` repeats this comparison without refitting. The independent NumPy GMM and FWL sensitivity implementations under `validation/independent/` are optional audit checks after the main run; they are not prerequisites for generating manuscript results.
-
-Figure 1 is retained historical context from the cited IHME/Our World in Data source. It is not generated from the age-standardized outcome panel and is not presented as a regenerated analytical figure. Manuscript/reply DOCX files and internal correspondence are excluded.
+After the analysis, the verification script compares 18 reference tables and 27 sample-index files with the generated outputs. Run `python run_analysis.py --verify-only` to repeat this check. `REPRODUCTION_CHECK.json` records the validation results. Figure 1 uses the historical IHME/Our World in Data series cited in the article.
 
 ## License
 
-The author's existing MIT LICENSE applies to original repository code. Vendored pydynpd retains its own license at `02_code/vendor/pydynpd/LICENSE`; see `VENDOR_NOTES.md`. Provider terms govern third-party source data; the code license does not relicense those data.
+Project code is provided under the MIT license. pydynpd has its own license at `02_code/vendor/pydynpd/LICENSE`. See `VENDOR_NOTES.md` for compatibility details. Source data follow their providers' terms.
